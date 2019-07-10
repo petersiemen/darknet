@@ -1,4 +1,6 @@
 *.o
+*.a
+*.so
 *.dSYM
 *.csv
 *.out
@@ -25,3 +27,10 @@ ehthumbs.db
 Icon?
 Thumbs.db
 *.swp
+
+
+# Pipenv
+.venv
+
+# IDE
+.idea/

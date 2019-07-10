@@ -32,6 +32,6 @@ def predict_tactics(net, s, n):
     tacs = sorted(tacs, key=lambda x: -x[1])
     return tacs
 
-net = load_net("cfg/coq.test.cfg", "/home/pjreddie/backup/coq.backup", 0)
+net = load_net("../cfg/coq.test.cfg", "/home/pjreddie/backup/coq.backup", 0)
 t = predict_tactics(net, "+++++\n", 10)
 print t
