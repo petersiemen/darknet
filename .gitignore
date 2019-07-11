@@ -31,7 +31,7 @@ Thumbs.db
 
 # Pipenv
 .venv
-python/src/tests/output
+python/tests/output
 
 # IDE
 .idea/
