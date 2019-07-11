@@ -9,6 +9,7 @@ ipython = "*"
 
 [packages]
 boto3 = "*"
+pillow = "*"
 
 [requires]
 python_version = "2.7"

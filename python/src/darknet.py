@@ -52,7 +52,7 @@ class METADATA(Structure):
 
 
 # lib = CDLL("/home/pjreddie/documents/darknet/libdarknet.so", RTLD_GLOBAL)
-lib = CDLL(os.path.join(HERE, "../libdarknet.so"), RTLD_GLOBAL)
+lib = CDLL(os.path.join(HERE, "../../libdarknet.so"), RTLD_GLOBAL)
 lib.network_width.argtypes = [c_void_p]
 lib.network_width.restype = c_int
 lib.network_height.argtypes = [c_void_p]
@@ -159,15 +159,15 @@ if __name__ == "__main__":
     # r = classify(net, meta, im)
     # print r[:10]
 
-    yolov3_tiny_cfg = os.path.join(HERE, "../cfg/yolov3-tiny.cfg")
-    yolov3_tiny_weights = os.path.join(HERE, "../cfg/yolov3-tiny.weights")
+    yolov3_tiny_cfg = os.path.join(HERE, "../../cfg/yolov3-tiny.cfg")
+    yolov3_tiny_weights = os.path.join(HERE, "../../cfg/yolov3-tiny.weights")
 
 
-    yolov3_cfg = os.path.join(HERE, "../cfg/yolov3.cfg")
-    yolov3_weights = os.path.join(HERE, "../cfg/yolov3.weights")
+    yolov3_cfg = os.path.join(HERE, "../../cfg/yolov3.cfg")
+    yolov3_weights = os.path.join(HERE, "../../cfg/yolov3.weights")
 
-    coco_data = os.path.join(HERE, "../cfg/coco.data")
-    dog = os.path.join(HERE, "../data/dog.jpg")
+    coco_data = os.path.join(HERE, "../../cfg/coco.data")
+    dog = os.path.join(HERE, "../../data/dog.jpg")
 
 
     # net = load_net("cfg/tiny-yolo.cfg", "tiny-yolo.weights", 0)
