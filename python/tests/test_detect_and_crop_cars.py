@@ -3,7 +3,8 @@ from context import *
 HERE = os.path.dirname(os.path.realpath(__file__))
 
 
-def test_detect_car():
+def test_crop_image():
     dog = os.path.join(HERE, "./resources/dog.jpg")
-    crop_image(dog, (100, 200), 200, 400)
-    assert True
+    cropped = crop_image(dog, (100, 200), 200, 400)
+
+    cropped.show()

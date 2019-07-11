@@ -11,7 +11,8 @@ def crop_image(image_path, (x, y), width, height):
     lower = y + height
 
     cropped = img.crop((left, upper, right, lower))
-    cropped.show()
+    return cropped
+
 
 
 def detect_objects(image_path):
