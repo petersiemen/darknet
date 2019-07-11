@@ -119,6 +119,13 @@ class Darknet():
         return res
 
 
+    def detect_coco_item(self, image, item, thresh=.5, hier_thresh=.5, nms=.45):
+        bounding_boxes = self.detect(image, thresh, hier_thresh, nms)
+        items = [bounding_box for bounding_box in bounding_boxes if bounding_box[0] == item]
+        return items
+
+
+
 if __name__ == "__main__":
     HERE = os.path.dirname(os.path.realpath(__file__))
 

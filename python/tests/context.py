@@ -4,4 +4,4 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 
 from detect_and_crop_coco_item import *
-
+from darknet2 import Darknet
