@@ -2,6 +2,7 @@ from ctypes import *
 import math
 import random
 import os
+from PIL import Image
 
 
 def sample(probs):
@@ -47,6 +48,28 @@ class IMAGE(Structure):
 class METADATA(Structure):
     _fields_ = [("classes", c_int),
                 ("names", POINTER(c_char_p))]
+
+
+class Detection():
+    """
+    ('car', 0.6152912378311157, (572.1994018554688, 120.48184204101562, 214.3546600341797, 98.72494506835938))
+    """
+
+    def __init__(self, tuple):
+        self.name = tuple[0]
+        self.prob = tuple[1]
+        self.x = tuple[2][0]
+        self.y = tuple[2][1]
+        self.width = tuple[2][2]
+        self.height = tuple[2][3]
+
+    def __repr__(self):
+        return 'Detection(name = {}, prob = {}, x = {}, y = {}, width = {}, height = {})'.format(self.name,
+                                                                                                 self.prob,
+                                                                                                 self.x,
+                                                                                                 self.y,
+                                                                                                 self.width,
+                                                                                                 self.height)
 
 
 class Darknet():
@@ -118,13 +141,21 @@ class Darknet():
         self.free_detections(dets, num)
         return res
 
-
     def detect_coco_item(self, image, item, thresh=.5, hier_thresh=.5, nms=.45):
         bounding_boxes = self.detect(image, thresh, hier_thresh, nms)
-        items = [bounding_box for bounding_box in bounding_boxes if bounding_box[0] == item]
-        return items
+        detections = [Detection(bounding_box) for bounding_box in bounding_boxes if bounding_box[0] == item]
+        return detections
 
 
+    def crop(self, image, detection):
+        img = Image.open(image)
+        left = detection.x
+        upper = detection.y
+        right = detection.x + detection.width
+        lower = detection.y + detection.height
+
+        cropped = img.crop((left, upper, right, lower))
+        return cropped
 
 if __name__ == "__main__":
     HERE = os.path.dirname(os.path.realpath(__file__))
@@ -137,5 +168,5 @@ if __name__ == "__main__":
     drknet = Darknet(libdarknet_so=libdarknet_so, cfg=yolov3_tiny_cfg, weights=yolov3_tiny_weights, meta=coco_data)
 
     dog = os.path.join(HERE, "../../data/dog.jpg")
-    r = drknet.detect(dog)
-    print(r)
+    dd = drknet.detect(dog)
+    print dd

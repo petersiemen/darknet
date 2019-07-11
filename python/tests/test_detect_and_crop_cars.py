@@ -38,5 +38,6 @@ def test_darknet_tiny_car():
     dog = os.path.join(HERE, "../../data/dog.jpg")
     cars = drknet.detect_coco_item(dog, 'car')
 
-
-    print(cars)
+    for car in cars:
+        cropped = drknet.crop(dog, car)
+        cropped.show()
