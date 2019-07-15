@@ -32,6 +32,7 @@ Thumbs.db
 # Pipenv
 .venv
 python/tests/output
+python/tests/resources/images
 
 # IDE
 .idea/

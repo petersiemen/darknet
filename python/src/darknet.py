@@ -3,7 +3,7 @@ import math
 import random
 import os
 from PIL import Image
-
+from optparse import OptionParser
 
 
 
@@ -184,6 +184,17 @@ class Darknet():
 
 if __name__ == "__main__":
     HERE = os.path.dirname(os.path.realpath(__file__))
+
+
+    parser = OptionParser()
+    parser.add_option("-f", "--file", dest="filename",
+                      help="write report to FILE", metavar="FILE")
+    parser.add_option("-q", "--quiet",
+                      action="store_false", dest="verbose", default=True,
+                      help="don't print status messages to stdout")
+
+    (options, args) = parser.parse_args()
+
 
     libdarknet_so = os.path.join(HERE, "../../libdarknet.so")
     yolov3_tiny_cfg = os.path.join(HERE, "../../cfg/yolov3-tiny.cfg")
